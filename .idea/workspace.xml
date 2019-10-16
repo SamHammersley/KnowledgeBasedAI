@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3985750c-f8b7-4a03-baba-1cebebb391f1" name="Default Changelist" comment="" />
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/search_algorithms/a*.clj">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="365">
+              <caret line="70" column="14" lean-forward="true" selection-start-line="70" selection-start-column="14" selection-end-line="70" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project.clj">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="48" lean-forward="true" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/search_algorithms/core.clj" />
+        <option value="$PROJECT_DIR$/src/search_algorithms/a*.clj" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="609" />
+    <option name="width" value="960" />
+    <option name="height" value="778" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="search-algorithms" type="b2602c69:ProjectViewProjectNode" />
+              <item name="search-algorithms" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="search-algorithms" type="b2602c69:ProjectViewProjectNode" />
+              <item name="search-algorithms" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="search-algorithms" type="b2602c69:ProjectViewProjectNode" />
+              <item name="search-algorithms" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="search_algorithms" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
+  </component>
+  <component name="ReplState" timestamp="1571264906951">{:repl-history {:ide [], :local [{:command &quot;(+ 2 2)&quot;, :offset 7, :ns &quot;search-algorithms.core&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [x] (&gt; x 20)) a*lmg)&quot;, :offset 54, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [x] (&gt; x 20)) a*lmg, { debug true })&quot;, :offset 70, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [x] (&gt; x 20)) a*lmg, :keys true)&quot;, :offset 66, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [x] (&gt; x 20)) a*lmg, :or true)&quot;, :offset 64, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [x] (&gt;= x 20)) a*lmg, :debug true)&quot;, :offset 68, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [x] (&gt; x 40)) a*lmg, :debug true)&quot;, :offset 67, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [x] (&gt; x 100)) a*lmg, :debug true)&quot;, :offset 68, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [x] (&gt; x 1000)) a*lmg, :debug true)&quot;, :offset 69, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [x] (&gt; x 10000)) a*lmg, :debug true)&quot;, :offset 70, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} 10 a*lmg, :debug true)&quot;, :offset 52, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(def has-value (when true\n                 (println \&quot;Hello World\&quot;)\n                 \&quot;Returned Value\&quot;))&quot;, :offset 102, :ns &quot;search-algorithms.core&quot;} {:command &quot;(has-value)&quot;, :offset 11, :ns &quot;search-algorithms.core&quot;} {:command &quot;has-value&quot;, :offset 9, :ns &quot;search-algorithms.core&quot;} {:command &quot;(A*search {:state 0, :cost 0} 3 a*lmg, :debug true)&quot;, :offset 51, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [x] (&gt; x 20)) a*lmg, :debug true)&quot;, :offset 67, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [s] (&gt; (:cost s) 20)) a*lmg, :debug true)&quot;, :offset 75, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [s] (&gt; (:state s) 20)) a*lmg, :debug true)&quot;, :offset 76, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [s] (&gt; s 20)) a*lmg, :get-cost 0 :debug true)&quot;, :offset 79, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [s] (&gt; s 20)) a*lmg, :get-cost #(0) :debug true)&quot;, :offset 82, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [s] (&gt; s 20)) a*lmg, :get-cost (fn [x] 0) :debug true)&quot;, :offset 88, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [s] (&gt; s 20)) a*lmg, :debug true)&quot;, :offset 67, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [s] (&gt; s 20)) a*lmg :debug true)&quot;, :offset 66, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [s] (&gt; s 20)) a*lmg :get-cost #(% 0) :debug true)&quot;, :offset 83, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [s] (&gt; s 20)) a*lmg :get-cost (fn [x] 0) :debug true)&quot;, :offset 87, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [s] (&gt; s 20)) a*lmg :get-cost (fn [x] x) :debug true)&quot;, :offset 87, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [s] (&gt; s 20)) a*lmg :get-cost (fn [x] x * 0) :debug true)&quot;, :offset 91, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [s] (&gt; s 10)) a*lmg :get-cost (fn [x] x * 0) :debug true)&quot;, :offset 91, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [s] (&gt; s 4)) a*lmg :get-cost (fn [x] x * 0) :debug true)&quot;, :offset 90, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [s] (&gt; s 4)) a*lmg :get-cost (fn [x] x) :debug true)&quot;, :offset 86, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [s] (&gt; s 4)) a*lmg :get-cost (fn [x] (:cost x) / 2) :debug true)&quot;, :offset 98, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [s] (&gt; s 4)) a*lmg :get-cost (fn [x] (:cost x)) :debug true)&quot;, :offset 94, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [s] (&gt; s 4)) a*lmg :debug true :selector (fn [lis] (first lis)))&quot;, :offset 98, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(first (first '(1)))&quot;, :offset 20, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(first '(1))&quot;, :offset 12, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(remove #(&gt; % 5) spaghetti-numbers)&quot;, :offset 35, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [s] (&gt; s 4)) a*lmg :debug true)&quot;, :offset 65, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [s] (&gt; s 4)) a*lmg :get-cost (fn [x] 0) :debug true)&quot;, :offset 86, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [s] (&gt; s 50)) a*lmg :get-cost (fn [x] x + 50) :debug true)&quot;, :offset 92, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [s] (&gt; s 50)) a*lmg :get-cost (fn [x] 0) :debug true)&quot;, :offset 87, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(graph :a)&quot;, :offset 10, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [s] (&gt; s 50)) graph :get-cost (fn [x] 0) :debug true)&quot;, :offset 87, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} {:state 1, :cost 5} graph :get-cost (fn [x] 0) :debug true)&quot;, :offset 89, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} {:state 1, :cost 5} graph :debug true)&quot;, :offset 68, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(a*lmg {:state 1, :cost 5})&quot;, :offset 27, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [x] (&gt; x 0)) a*lmg :debug true)&quot;, :offset 65, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [x] (= x 1)) a*lmg :debug true)&quot;, :offset 65, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} {:state 1, :cost 5} a*lmg :debug true)&quot;, :offset 68, :ns &quot;search-algorithms.a*&quot;} {:command &quot;(A*search {:state 0, :cost 0} (fn [x] (&gt; x 20)) a*lmg1 :debug true)&quot;, :offset 67, :ns &quot;search-algorithms.a*&quot;}], :remote []}}</component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="ClojureREPL" factoryName="Local" activateToolWindowBeforeRun="false" nameIsGenerated="true">
+      <module name="search-algorithms" />
+      <setting name="replType" value="NREPL" />
+      <setting name="execution" value="LEININGEN" />
+      <setting name="jvmArgs" value="" />
+      <setting name="parameters" value="" />
+      <setting name="workingDir" value="$PROJECT_DIR$" />
+      <setting name="profiles" value="" />
+      <setting name="aliases" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="ClojureREPL" factoryName="Local" activateToolWindowBeforeRun="false">
+      <setting name="replType" value="NREPL" />
+      <setting name="execution" value="LEININGEN" />
+      <module name="" />
+      <setting name="jvmArgs" value="" />
+      <setting name="parameters" value="" />
+      <setting name="workingDir" value="" />
+      <setting name="profiles" value="" />
+      <setting name="aliases" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="ClojureREPL" factoryName="Remote" activateToolWindowBeforeRun="false">
+      <setting name="host" value="" />
+      <setting name="port" value="0" />
+      <setting name="replType" value="0" />
+      <module name="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3985750c-f8b7-4a03-baba-1cebebb391f1" name="Default Changelist" comment="" />
+      <created>1571224042989</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1571224042989</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1920" height="1038" extended-state="7" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Image Layers" order="0" />
+      <window_info id="Designer" order="1" />
+      <window_info id="UI Designer" order="2" />
+      <window_info id="Capture Tool" order="3" />
+      <window_info id="Favorites" order="4" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.4988938" visible="true" weight="0.2524013" />
+      <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="0" />
+      <window_info anchor="bottom" id="Terminal" order="1" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" weight="0.32964602" />
+      <window_info anchor="bottom" id="Message" order="3" />
+      <window_info anchor="bottom" id="Find" order="4" />
+      <window_info anchor="bottom" id="Run" order="5" />
+      <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="9" />
+      <window_info active="true" anchor="bottom" id="REPL" order="10" sideWeight="0.5011062" visible="true" weight="0.34955752" />
+      <window_info anchor="right" id="Palette" order="0" />
+      <window_info anchor="right" id="Theme Preview" order="1" />
+      <window_info anchor="right" id="Maven" order="2" />
+      <window_info anchor="right" id="Leiningen" order="3" weight="0.32977587" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Palette&#9;" order="5" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
+    </layout>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/project.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="48" lean-forward="true" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/search_algorithms/a*.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="70" column="14" lean-forward="true" selection-start-line="70" selection-start-column="14" selection-end-line="70" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
