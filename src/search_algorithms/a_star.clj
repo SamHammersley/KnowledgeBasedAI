@@ -52,27 +52,25 @@
                               ))
                           ))))
 
-(defn map-invert [m] (reduce (fn [m [k v]] (assoc m v k)) {} m))
+(def alphabet-start-index 97)
 
-(def graph { :a [:b :c],
-             :b [:a :c :d],
-             :c [:a :b],
-             :d [:b :e],
-             :e [:b :d]
+(defn generate-graph [n]
+  (loop [graph {} current-node 0]
+    (let [keyword (keyword (str (char (+ current-node alphabet-start-index))))]
+      (if (= current-node n)
+        graph
+        (recur (conj graph {keyword ()}) (inc current-node))))))
+
+(generate-graph 5)
+
+(def graph { :a {:b 10 :c 8},
+             :b {:a 10 :c 9 :d 5},
+             :c {:a 8 :b 9},
+             :d {:b 5 :e 4},
+             :e {:b 6 :d 4}
             })
-
-(def weights {
-              {:a :b} 10,
-              {:a :c} 8,
-              {:b :d} 5,
-              {:b :c} 9,
-              {:b :e} 6,
-              {:d :e} 4
-            })
-
-(defn get-weighting [x y] (let [key {x y}] (get weights key (weights (map-invert key)))))
 
 (defn a*lmg [s] (let [current-state (:state s) next-states (graph current-state)]
-                  (map (fn [x] {:state x, :cost (get-weighting x current-state)}) next-states)))
+                  (map (fn [x] {:state (first x) :cost (last x)}) next-states)))
 
 (A*search {:state :a :cost 0} :e a*lmg :debug true)
