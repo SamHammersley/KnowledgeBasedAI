@@ -1,4 +1,4 @@
-(ns search-algorithms.a*)
+(ns search-algorithms.a-star)
 
 ;; best first search mechanism
 ;; based on earlier breadth-1st search
