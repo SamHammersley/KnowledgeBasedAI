@@ -1,4 +1,4 @@
-(ns ica1.core
+(ns KnowledgeBasedAI.otherSearch
   (:use [clojure.data.priority-map]))
 
 (defn a*
