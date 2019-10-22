@@ -52,6 +52,18 @@
                               ))
                           ))))
 
+(defn d*Part
+      [path LMG goal selector]
+      (loop [next path]
+            (cond
+              (nil? (rest next))
+                path
+              (= (first (rest next)) (selector (LMG (first next))))
+                (recur (rest next))
+              :else
+                (recur (A*Search ((first next) goal LMG :selector selector)))
+              )))
+
 (def graph (generate-graph 5 10 25))
 
 (println graph)
