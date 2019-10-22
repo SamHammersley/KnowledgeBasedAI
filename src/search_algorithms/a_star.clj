@@ -3,12 +3,11 @@
 
 ;; best first search mechanism
 ;; based on earlier breadth-1st search
-;; @args start start state
-;; @args goal either a predicate to take a state determine if it is a goal
-;;            or a state equal to the goal
-;; @args LMG  legal move generator function which takes one state & returns
-;;            a list of states (typically these new states will have a cost
-;;            associated with them)
+;; @args start start state default cost 0 or given cost
+;; @args goal goal state
+;; @args LMG legal move generator function which takes one state & returns
+;;           a list of states (typically these new states will have a cost
+;;           associated with them)
 ;; @args selector takes list of states & selects the next one to explore from
 ;; @args get-state removes cost information from a state returning the raw state
 ;; @args get-cost  removes other information from a state returning only the cost
@@ -21,21 +20,21 @@
                             selector  :undef
                             debug     false}}]
 
-  (let [goal? (if (fn? goal) #(when (goal %) %) #(when (= % goal) %))
+  (let [goal-node (if (map? goal) goal {:state goal :cost 0})
         member? (fn [x lis] (some (partial = x) lis))
-        selector (if (= selector :undef) (fn [bag] (first (sort-by (comp get-cost first) bag))) selector)]
+        selector (if (= selector :undef) (fn [bag] (first (sort-by (comp get-cost last) bag))) selector)]
 
-    (loop [queued `((~start)) visited nil]
+    (loop [queued `((~goal-node)) visited nil]
       (if (empty? queued) nil                               ;; fail if (null queued)
-                          (let [next (selector queued)      ;; select next node
+                          (let [next (selector queued)      ;; select next nodes
                                 state (first next)          ;; filter out path
                                 raw-state (get-state state)] ;; filter costs, etc
 
-                            (when debug (println 'selecting (reverse next) '=> raw-state))
+                            (when debug (println 'selecting next '=> raw-state))
 
                             (cond
-                              (goal? raw-state)             ;; goal found
-                              (reverse next)                ;; quit with result
+                              (= raw-state start)            ;; goal found
+                              next            ;; quit with result (add d* function)
                               :else
                               (if (member? raw-state visited) ;; if we've visited the current state already
                                 (recur (remove #(= % next) queued) visited) ;; recur removing the already visited path
@@ -55,7 +54,13 @@
 
 (def graph (generate-graph 5 10 25))
 
-(defn a*lmg [s] (let [current-state (:state s) next-states (graph current-state)]
-                  (map (fn [x] {:state (first x) :cost (last x)}) next-states)))
+(println graph)
 
-(A*search {:state :a :cost 0} :e a*lmg :debug true)
+(defn a*lmg [s]
+  (let [current-state (:state s) next-states (graph current-state)]
+    (map (fn [x] {:state (first x) :cost (last x)}) next-states)))
+
+(time (A*search :a :e a*lmg))
+
+;(println (map #(:state %) path) '=> (reduce + (map #(:cost %) path)))
+;(println path '=> (reduce + (map #(:cost %) path)))
