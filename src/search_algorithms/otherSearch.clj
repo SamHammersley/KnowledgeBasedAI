@@ -1,5 +1,21 @@
-(ns KnowledgeBasedAI.otherSearch
+(ns search_algorithms.otherSearch
   (:use [clojure.data.priority-map]))
+
+(declare a*)
+
+(defn d*
+  [start goal?-fn distance-fn heuristic-fn neighbors-fn max-depth]
+  (loop [next (a* start goal?-fn distance-fn heuristic-fn neighbors-fn max-depth)]
+    [open (priority-map [start [start] 0] (heuristic-fn start))
+  depth 0]
+    (cond
+      (nil? (rest next))
+        (a* start goal?-fn distance-fn heuristic-fn neighbors-fn max-depth)
+      (= (first (rest next)) (pop open))
+        (recur (rest next))
+      :else
+        (recur (a* ((first next) goal?-fn distance-fn heuristic-fn neighbors-fn max-depth)))
+      )))
 
 (defn a*
   "Calculate shortest path with A*.
@@ -15,8 +31,10 @@
   (loop [open (priority-map [start [start] 0] (heuristic-fn start))
          depth 0]
     (let [[[node path distance] total] (first open)]
-      (cond (> depth max-depth) false
-            (goal?-fn node) path
+      (cond (> depth max-depth)
+            false
+            (goal?-fn node)
+            {path distance}
             :else (recur (into (pop open)
                                (for [neighbor (neighbors-fn node)]
                                  (let [new-node neighbor
@@ -64,16 +82,16 @@
 (def distance (comp paths str))
 
 (def heuristic {"a" 3
-               "b" 3
-               "c" 2
-               "d" 3
-               "e" 2
-               "f" 2
-               "g" 3
-               "h" 2
-               "i" 1
-               "j" 1
-               "k" 0})
+                "b" 3
+                "c" 2
+                "d" 3
+                "e" 2
+                "f" 2
+                "g" 3
+                "h" 2
+                "i" 1
+                "j" 1
+                "k" 0})
 
 (a* "a" (goal= "k") distance heuristic neighbors 20)
 (dijkstra "a" (goal= "k") distance neighbors 20)
