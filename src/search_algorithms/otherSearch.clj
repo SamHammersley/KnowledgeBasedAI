@@ -1,5 +1,23 @@
-(ns KnowledgeBasedAI.otherSearch
+(ns search_algorithms.otherSearch
   (:use [clojure.data.priority-map]))
+
+(declare a* )
+
+(defn d*
+  [start goal?-fn distance-fn heuristic-fn neighbors-fn]
+  (let [next (a* start goal?-fn distance-fn heuristic-fn neighbors-fn)]
+    (loop [path-to-check next final-path []
+           open (priority-map [(first path-to-check) [(first path-to-check)] 0] (heuristic-fn (first path-to-check)))]
+            (cond
+              (nil? (rest path-to-check))
+                final-path
+              (= (first (rest path-to-check)) (peek open))
+                (recur (rest path-to-check) (if (empty? open) open (pop open)) (conj final-path (first path-to-check)))
+              :else
+                (recur (a* (first path-to-check) goal?-fn distance-fn heuristic-fn neighbors-fn) open final-path)
+              ))))
+
+;(defn p [path distance] (println {path distance}) path)
 
 (defn a*
   "Calculate shortest path with A*.
@@ -9,14 +27,14 @@
   goal?-fn is called for each expanded node to check whether it is a goal
   distance-fn is called with from and to nodes and should return a numeric distance.
   heuristic-fn is called with a node and should return a numeric estimated distance to the nearest goal.
-  neighbors-fn is called with the node and should return all the neighbors
-  max-depth is the maximum depth of the path in steps."
-  [start goal?-fn distance-fn heuristic-fn neighbors-fn max-depth]
-  (loop [open (priority-map [start [start] 0] (heuristic-fn start))
-         depth 0]
+  neighbors-fn is called with the node and should return all the neighbors"
+  [start goal?-fn distance-fn heuristic-fn neighbors-fn ]
+  (loop [open (priority-map [start [start] 0] (heuristic-fn start))]
     (let [[[node path distance] total] (first open)]
-      (cond (> depth max-depth) false
-            (goal?-fn node) path
+      (cond
+            (goal?-fn node)
+              ;(p path distance)
+              path
             :else (recur (into (pop open)
                                (for [neighbor (neighbors-fn node)]
                                  (let [new-node neighbor
@@ -24,7 +42,7 @@
                                        new-distance (+ distance (distance-fn node neighbor))]
                                    [[new-node new-path new-distance]
                                     (+ new-distance (heuristic-fn neighbor))])))
-                         (count path))))))
+                         )))))
 (defn dijkstra
   "Calculate shortest path with Dijkstra's algorithm.
   start is the first node.
@@ -32,9 +50,9 @@
   distance-fn is called with from and to nodes and should return a numeric distance.
   neighbors-fn is called with the node and should return all the neighbors
   max-depth is the maximum depth of the path in steps."
-  [start goal?-fn distance-fn neighbors-fn max-depth]
+  [start goal?-fn distance-fn neighbors-fn ]
   ;; Dijkstra is a special case of A* when the heuristic is zero
-  (a* start goal?-fn distance-fn (constantly 0) neighbors-fn max-depth))
+  (a* start goal?-fn distance-fn (constantly 0) neighbors-fn ))
 
 (def paths-in-one-direction
   {"ab" 2
@@ -64,16 +82,17 @@
 (def distance (comp paths str))
 
 (def heuristic {"a" 3
-               "b" 3
-               "c" 2
-               "d" 3
-               "e" 2
-               "f" 2
-               "g" 3
-               "h" 2
-               "i" 1
-               "j" 1
-               "k" 0})
+                "b" 3
+                "c" 2
+                "d" 3
+                "e" 2
+                "f" 2
+                "g" 3
+                "h" 2
+                "i" 1
+                "j" 1
+                "k" 0})
 
-(a* "a" (goal= "k") distance heuristic neighbors 20)
-(dijkstra "a" (goal= "k") distance neighbors 20)
+;(a* "a" (goal= "k") distance heuristic neighbors)
+;(dijkstra "a" (goal= "k") distance neighbors)
+(d* "a" (goal= "k") distance heuristic neighbors)

@@ -12,6 +12,20 @@
 ;; @args get-state removes cost information from a state returning the raw state
 ;; @args get-cost  removes other information from a state returning only the cost
 ;; @args debug prints some information
+(declare A*search)
+
+(defn d*Part
+      [path LMG goal selector]
+  (println 'test)
+      (loop [next path]
+            (cond
+              (nil? (rest next))
+                path
+              (= (first (rest next)) (selector (LMG (first next))))
+                (recur (rest next))
+              :else
+                (recur (A*search (first next) goal LMG :selector selector))
+              )))
 
 (defn A*search
   [start goal LMG & {:keys [get-state get-cost selector debug]
@@ -34,6 +48,7 @@
 
                             (cond
                               (= raw-state start)            ;; goal found
+                                ;next
                               (d*Part next LMG goal selector)            ;; quit with result (add d* function)
                               :else
                               (if (member? raw-state visited) ;; if we've visited the current state already
@@ -52,17 +67,6 @@
                               ))
                           ))))
 
-(defn d*Part
-      [path LMG goal selector]
-      (loop [next path]
-            (cond
-              (nil? (rest next))
-                path
-              (= (first (rest next)) (selector (LMG (first next))))
-                (recur (rest next))
-              :else
-                (recur (A*Search ((first next) goal LMG :selector selector)))
-              )))
 
 (def graph (generate-graph 5 10 25))
 
@@ -75,4 +79,4 @@
 (time (A*search :a :e a*lmg))
 
 ;(println (map #(:state %) path) '=> (reduce + (map #(:cost %) path)))
-;(println path '=> (reduce + (map #(:cost %) path)))
+(println path '=> (reduce + (map #(:cost %) path)))
