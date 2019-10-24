@@ -19,30 +19,36 @@
 
 ;(defn p [path distance] (println {path distance}) path)
 
+(defn in? [coll e]
+  (some #(= e %) coll))
+
 (defn a*
   "Calculate shortest path with A*.
   Note the heuristic function must be monotonous, increasing and never overestimate
   (i.e. it must be admissible) to guarantee an optimal result.
   start is the first node.
-  goal?-fn is called for each expanded node to check whether it is a goal
+  goal is called for each expanded node to check whether it is a goal
   distance-fn is called with from and to nodes and should return a numeric distance.
   heuristic-fn is called with a node and should return a numeric estimated distance to the nearest goal.
   neighbors-fn is called with the node and should return all the neighbors"
-  [start goal?-fn distance-fn heuristic-fn neighbors-fn ]
-  (loop [open (priority-map [start [start] 0] (heuristic-fn start))]
-    (let [[[node path distance] total] (first open)]
-      (cond
-            (goal?-fn node)
-              ;(p path distance)
-              path
-            :else (recur (into (pop open)
-                               (for [neighbor (neighbors-fn node)]
-                                 (let [new-node neighbor
-                                       new-path (conj path neighbor)
-                                       new-distance (+ distance (distance-fn node neighbor))]
-                                   [[new-node new-path new-distance]
-                                    (+ new-distance (heuristic-fn neighbor))])))
-                         )))))
+  [start goal distance-fn heuristic-fn neighbors-fn]
+  (let [goal? (if (fn? goal) goal #(= goal %))]
+    (loop [closed [] open (priority-map [start [start] 0] (heuristic-fn start))]
+      (let [[[node path distance] total] (first open)]
+        (println path '-> closed)
+        (cond
+          (goal? node)
+          path
+          :else
+          (recur (conj closed node)
+                 (into (pop open) (for [neighbor (neighbors-fn node)
+                                        :let [new-node neighbor
+                                              new-path (conj path neighbor)
+                                              new-distance (+ distance (distance-fn node neighbor))]
+                                        :when (not (in? closed new-node))]
+                                    [[new-node new-path new-distance] (+ new-distance (heuristic-fn neighbor))])))
+          )))))
+
 (defn dijkstra
   "Calculate shortest path with Dijkstra's algorithm.
   start is the first node.
@@ -93,6 +99,6 @@
                 "j" 1
                 "k" 0})
 
-;(a* "a" (goal= "k") distance heuristic neighbors)
+(a* "a" (goal= "k") distance heuristic neighbors)
 ;(dijkstra "a" (goal= "k") distance neighbors)
-(d* "a" (goal= "k") distance heuristic neighbors)
+;(d* "a" (goal= "k") distance heuristic neighbors)
