@@ -6,16 +6,19 @@
 (defn d*
   [start goal?-fn distance-fn heuristic-fn neighbors-fn]
   (let [next (a* start goal?-fn distance-fn heuristic-fn neighbors-fn)]
-    (loop [path-to-check next final-path []
-           open (priority-map [(first path-to-check) [(first path-to-check)] 0] (heuristic-fn (first path-to-check)))]
-            (cond
-              (nil? (rest path-to-check))
-                final-path
-              (= (first (rest path-to-check)) (peek open))
-                (recur (rest path-to-check) (if (empty? open) open (pop open)) (conj final-path (first path-to-check)))
-              :else
-                (recur (a* (first path-to-check) goal?-fn distance-fn heuristic-fn neighbors-fn) open final-path)
-              ))))
+    (loop [path-to-check next final-path [] node (neighbors-fn (first path-to-check))]      ;open (priority-map [node [path-to-check] 0] (heuristic-fn (first path-to-check)))
+      node
+            ;(cond
+            ;  (nil? (rest path-to-check))
+            ;    final-path
+            ;  (= (first (rest path-to-check)) (first node))
+            ;    (println 'equals)
+                ;(recur (rest path-to-check) (conj final-path (first path-to-check)) (neighbors-fn (first (rest path-to-check))) ) ;(if (empty? open) open (pop open))
+              ;:else
+              ;(println 'else)
+              ;(recur (a* (first path-to-check) goal?-fn distance-fn heuristic-fn neighbors-fn) final-path (neighbors-fn (first path-to-check)))
+    ;)
+    )))
 
 ;(defn p [path distance] (println {path distance}) path)
 
@@ -31,6 +34,7 @@
   [start goal?-fn distance-fn heuristic-fn neighbors-fn ]
   (loop [open (priority-map [start [start] 0] (heuristic-fn start))]
     (let [[[node path distance] total] (first open)]
+      (println 'open open)
       (cond
             (goal?-fn node)
               ;(p path distance)
@@ -93,6 +97,7 @@
                 "j" 1
                 "k" 0})
 
-;(a* "a" (goal= "k") distance heuristic neighbors)
+
+(a* "a" (goal= "k") distance heuristic neighbors)
 ;(dijkstra "a" (goal= "k") distance neighbors)
-(d* "a" (goal= "k") distance heuristic neighbors)
+;(d* "a" (goal= "k") distance heuristic neighbors)
