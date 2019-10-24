@@ -34,7 +34,7 @@
 
                             (cond
                               (= raw-state start)            ;; goal found
-                              next            ;; quit with result (add d* function)
+                              (d*Part next LMG goal selector)            ;; quit with result (add d* function)
                               :else
                               (if (member? raw-state visited) ;; if we've visited the current state already
                                 (recur (remove #(= % next) queued) visited) ;; recur removing the already visited path
@@ -51,6 +51,18 @@
                                   ))
                               ))
                           ))))
+
+(defn d*Part
+      [path LMG goal selector]
+      (loop [next path]
+            (cond
+              (nil? (rest next))
+                path
+              (= (first (rest next)) (selector (LMG (first next))))
+                (recur (rest next))
+              :else
+                (recur (A*Search ((first next) goal LMG :selector selector)))
+              )))
 
 (def graph (generate-graph 5 10 25))
 
