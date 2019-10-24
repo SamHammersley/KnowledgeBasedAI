@@ -5,17 +5,19 @@
 
 (defn d*
   [start goal?-fn distance-fn heuristic-fn neighbors-fn]
-  (loop [next (a* start goal?-fn distance-fn heuristic-fn neighbors-fn)
-    open (priority-map [start [start] 0] (heuristic-fn start))]
-        (let [[[node path distance] total] (first open)]
-          (cond
-            (nil? (rest next))
-              (a* start goal?-fn distance-fn heuristic-fn neighbors-fn)
-            (= (first (rest next)) (peek open))
-              (recur (rest next) (pop open))
-            :else
-              (recur (a* (first next) goal?-fn distance-fn heuristic-fn neighbors-fn) open)
-            ))))
+  (let [path (a* start goal?-fn distance-fn heuristic-fn neighbors-fn)]
+    (loop [next path
+           open (priority-map [(first next) [(first next)] 0] (heuristic-fn (first next)))]
+            (cond
+              (nil? (rest next))
+                path
+              (= (first (rest next)) (peek open))
+                (recur (rest next) (if (empty? open) open (pop open)))
+              :else
+                (recur (a* (first next) goal?-fn distance-fn heuristic-fn neighbors-fn) open)
+              ))))
+
+(defn p [path distance] (println {path distance}) path)
 
 (defn a*
   "Calculate shortest path with A*.
@@ -31,7 +33,7 @@
     (let [[[node path distance] total] (first open)]
       (cond
             (goal?-fn node)
-              {path distance}
+              (p path distance)
             :else (recur (into (pop open)
                                (for [neighbor (neighbors-fn node)]
                                  (let [new-node neighbor
@@ -92,4 +94,4 @@
 
 (a* "a" (goal= "k") distance heuristic neighbors)
 (dijkstra "a" (goal= "k") distance neighbors)
-(d* "a" (goal= "k") distance heuristic neighbors)
+;(d* "a" (goal= "k") distance heuristic neighbors)
