@@ -1,5 +1,5 @@
-(ns search-algorithms.a-star
-  (:require [search-algorithms.graph-generation :refer :all]))
+(ns search-algorithms.simons-a-star
+  (:use [search-algorithms.graph-generation]))
 
 ;; best first search mechanism
 ;; based on earlier breadth-1st search

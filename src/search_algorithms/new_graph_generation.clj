@@ -31,4 +31,4 @@
       (println 'from (first nodes) 'to goal)
       (if (empty? nodes)
         heuristics
-        (recur (rest nodes) (assoc heuristics (first nodes) (search-algorithm (first nodes) goal distance-fn neighbours-fn))))))
+        (recur (rest nodes) (assoc heuristics (first nodes) (last (search-algorithm (first nodes) goal distance-fn 0 neighbours-fn)))))))
