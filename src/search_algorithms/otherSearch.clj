@@ -1,26 +1,24 @@
 (ns search_algorithms.otherSearch
   (:use [clojure.data.priority-map]))
 
-(declare a* )
+(declare a* get-open-nodes p)
 
 (defn d*
-  [start goal?-fn distance-fn heuristic-fn neighbors-fn]
-  (let [next (a* start goal?-fn distance-fn heuristic-fn neighbors-fn)]
-    (loop [path-to-check next final-path [] node (neighbors-fn (first path-to-check))]      ;open (priority-map [node [path-to-check] 0] (heuristic-fn (first path-to-check)))
-      node
-            ;(cond
-            ;  (nil? (rest path-to-check))
-            ;    final-path
-            ;  (= (first (rest path-to-check)) (first node))
-            ;    (println 'equals)
-                ;(recur (rest path-to-check) (conj final-path (first path-to-check)) (neighbors-fn (first (rest path-to-check))) ) ;(if (empty? open) open (pop open))
-              ;:else
-              ;(println 'else)
-              ;(recur (a* (first path-to-check) goal?-fn distance-fn heuristic-fn neighbors-fn) final-path (neighbors-fn (first path-to-check)))
-    ;)
-    )))
-
-;(defn p [path distance] (println {path distance}) path)
+  [start goal distance-fn heuristic-fn neighbours-fn]
+  (let [next (a* start goal distance-fn heuristic-fn neighbours-fn)]
+    (loop [path-to-check next
+           complete-path []]
+      (let [path-node (first path-to-check)
+            open (get-open-nodes distance-fn heuristic-fn neighbours-fn (priority-map [path-node [path-node] 0] (heuristic-fn start)) [])
+            [[open-node open-path open-distance] total] (first open)]
+        (cond
+          (empty? (rest path-to-check))
+            (conj complete-path path-node)
+          (= (first (rest path-to-check)) open-node)
+            (recur (rest path-to-check) (conj complete-path path-node) )
+          :else
+            (recur (a* path-node goal distance-fn heuristic-fn neighbours-fn) complete-path)
+          )))))
 
 (defn a*
   "Calculate shortest path with A*.
@@ -31,22 +29,29 @@
   distance-fn is called with from and to nodes and should return a numeric distance.
   heuristic-fn is called with a node and should return a numeric estimated distance to the nearest goal.
   neighbors-fn is called with the node and should return all the neighbors"
-  [start goal?-fn distance-fn heuristic-fn neighbors-fn ]
-  (loop [open (priority-map [start [start] 0] (heuristic-fn start))]
-    (let [[[node path distance] total] (first open)]
-      (println 'open open)
-      (cond
-            (goal?-fn node)
-              ;(p path distance)
-              path
-            :else (recur (into (pop open)
-                               (for [neighbor (neighbors-fn node)]
-                                 (let [new-node neighbor
-                                       new-path (conj path neighbor)
-                                       new-distance (+ distance (distance-fn node neighbor))]
-                                   [[new-node new-path new-distance]
-                                    (+ new-distance (heuristic-fn neighbor))])))
-                         )))))
+  [start goal distance-fn heuristic-fn neighbours-fn ]
+  (let [goal?-fn (if (fn? goal) goal #(= goal %))]
+    (loop [closed [] open (priority-map [start [start] 0] (heuristic-fn start))]
+      (let [[[node path distance] total] (first open)]
+        (if (goal?-fn node)
+          path
+          (recur (conj closed node) (get-open-nodes distance-fn heuristic-fn neighbours-fn open closed)
+                 ))))))
+
+(defn in? [coll e]
+  (some #(= e %) coll))
+
+(defn get-open-nodes [distance-fn heuristic-fn neighbours-fn open closed]
+  (let [[[node path distance] total] (first open)]
+  (into (pop open)
+        (for [neighbour (neighbours-fn node)
+              :let [new-node neighbour
+                    new-path (conj path neighbour)
+                    new-distance (+ distance (distance-fn node neighbour))]
+              :when (not (in? closed new-node))]
+          [[new-node new-path new-distance] (+ new-distance (heuristic-fn neighbour))])))
+  )
+
 (defn dijkstra
   "Calculate shortest path with Dijkstra's algorithm.
   start is the first node.
@@ -58,7 +63,7 @@
   ;; Dijkstra is a special case of A* when the heuristic is zero
   (a* start goal?-fn distance-fn (constantly 0) neighbors-fn ))
 
-(def paths-in-one-direction
+(def edges-in-one-direction
   {"ab" 2
    "bc" 3
    "cj" 1
@@ -75,13 +80,14 @@
    "jk" 1})
 
 (defn reverse-path [[k v]] [(apply str (reverse k)) v])
-(def paths (into paths-in-one-direction (map reverse-path paths-in-one-direction)))
+(def paths (into edges-in-one-direction (map reverse-path edges-in-one-direction)))
 
 
 (def neighbors (apply merge-with concat
                       (map (fn [[[from to] distance]]
                              {(str from) [(str to)]})
                            paths)))
+
 (defn goal= [n] (partial = n))
 (def distance (comp paths str))
 
@@ -97,7 +103,12 @@
                 "j" 1
                 "k" 0})
 
+(defn debug [path s] (println s) path)
 
-(a* "a" (goal= "k") distance heuristic neighbors)
-;(dijkstra "a" (goal= "k") distance neighbors)
-;(d* "a" (goal= "k") distance heuristic neighbors)
+;(defn search-call [search start goal graph]
+;  (search start goal distance heuristic neighbors))
+
+(a* "a" "k" distance heuristic neighbors)
+(dijkstra "a" "k" distance neighbors)
+(d* "a" "k" distance heuristic neighbors)
+(get-open-nodes  distance heuristic neighbors (priority-map ["a" ["a"] 0] (heuristic "a")) [])
