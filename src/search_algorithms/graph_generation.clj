@@ -12,12 +12,12 @@
 
 (defn generate-edges [current-node graph min-cost max-cost probability]
   (loop [nodes (available-nodes graph current-node), edges graph, p (rand)]
-     (if (nil? (first nodes))
-       edges
-       (let [cost (+ min-cost (rand-int (- max-cost min-cost)))
-             new-graph (if (< p probability) (update-edges edges current-node (first nodes) cost) edges)]
-         (recur (rest nodes) new-graph (rand))))
-     ))
+    (if (nil? (first nodes))
+      edges
+      (let [cost (+ min-cost (rand-int (- max-cost min-cost)))
+            new-graph (if (< p probability) (update-edges edges current-node (first nodes) cost) edges)]
+        (recur (rest nodes) new-graph (rand))))
+    ))
 
 (def alphabet-start-index 97)
 
