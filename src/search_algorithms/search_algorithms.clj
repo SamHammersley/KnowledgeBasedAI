@@ -5,7 +5,6 @@
 
 (defn get-open-nodes [distance-fn heuristic-fn neighbours-fn open closed]
   (let [[[node path distance] total] (peek open)]
-    (println )
     (into (pop open)
           (for [neighbour (neighbours-fn node)
                 :let [new-node neighbour
