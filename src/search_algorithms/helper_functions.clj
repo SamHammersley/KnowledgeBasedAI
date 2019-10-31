@@ -9,3 +9,5 @@
 
 (defn debug [path] (println path) path)
 (defn reverse-path [[k v]] [(apply str (reverse k)) v])
+
+(defn print-time [x] nil)

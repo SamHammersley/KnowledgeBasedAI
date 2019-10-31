@@ -41,7 +41,7 @@
       (let [path-node (first path-to-check)
             open (get-open-nodes distance-fn heuristic-fn neighbours-fn (priority-map [path-node [path-node] 0] (heuristic-fn path-node)) closed)
             open-node (first (first (peek open)))]
-        (println 'path= path-to-check 'open= open 'open-node-heuristic= (heuristic-fn open-node) 'next-node-heuristic= (heuristic-fn (first (rest path-to-check))))
+        ;(println 'path= path-to-check 'open= open 'open-node-heuristic= (heuristic-fn open-node) 'next-node-heuristic= (heuristic-fn (first (rest path-to-check))))
         (cond
           (empty? (rest path-to-check))
             (conj closed path-node)
