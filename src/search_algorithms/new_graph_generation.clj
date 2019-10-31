@@ -8,7 +8,8 @@
     (loop [current-node (first other-nodes) nodes (rest other-nodes) p (rand) result {}]
       (if (nil? current-node)
         result
-        (let [r (if (< p probability-threshold) (assoc result (str origin-node current-node) cost) result)]
+        (let [edge (assoc result (str origin-node current-node) cost)
+              r (if (and (not (in? (keys result) (reverse-path [origin-node current-node]))) (< p probability-threshold)) edge result)]
           (recur (first nodes) (rest nodes) (rand) r))
         ))))
 
