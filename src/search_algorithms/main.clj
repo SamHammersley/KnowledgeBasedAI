@@ -3,11 +3,11 @@
         [search-algorithms.search-algorithms]
         [search-algorithms.new-graph-generation]))
 
-(def edges-in-one-direction (generate-new-edges 10 1 60 (min-probability-threshold 10)))
+(def edges-in-one-direction (generate-new-edges 26 1 60 (min-probability-threshold 26)))
 (def paths (into edges-in-one-direction (map reverse-path edges-in-one-direction)))
 (def neighbors (apply merge-with concat (map (fn [[[from to] distance]] {(str from) [(str to)]}) paths)))
 (def distance (comp paths str))
-(def heuristic (generate-heuristics "d" dijkstra distance neighbors))
+;(def heuristic (generate-heuristics "z" dijkstra distance neighbors))
 
 (def test-edges-in-one-direction {
                                   "02" 2
@@ -29,9 +29,9 @@
 (print-formatted-edges edges-in-one-direction)
 
 ;Completeness tests
-(dijkstra "a" "d" distance (constantly 0) neighbors)
-(a* "a" "d" distance heuristic neighbors)
-(d* "a" "d" distance heuristic neighbors)
+;(dijkstra "a" "z" distance (constantly 0) neighbors)
+;(a* "a" "z" distance heuristic neighbors)
+;(d* "a" "z" distance heuristic neighbors)
 
 ;Optimality Tests
 (= ["5" "0" "2" "3"] (first(a* "5" "3" test-distance test-heuristic test-neighbors)))
@@ -40,11 +40,11 @@
 
 
 ;Allows JVM warm-up
-(print-time(dorun (for [x (range 0 50000)] (dijkstra "a" "d" distance (constantly 0) neighbors))))
-(print-time(dorun (for [x (range 0 50000)] (a* "a" "d" distance heuristic neighbors))))
-(print-time(dorun (for [x (range 0 50000)] (d* "a" "d" distance heuristic neighbors))))
+(print-time(dorun (for [x (range 0 50000)] (dijkstra "5" "3" test-distance (constantly 0) test-neighbors))))
+(print-time(dorun (for [x (range 0 50000)] (a* "5" "3" test-distance test-heuristic test-neighbors))))
+(print-time(dorun (for [x (range 0 50000)] (d* "5" "3" test-distance test-heuristic test-neighbors))))
 
 ;Time complexity tests
-(print-time (time (dorun (for [x (range 0 1000)] (a* "a" "d" distance heuristic neighbors)))))
-(print-time (time (dorun (for [x (range 0 1000)] (d* "a" "d" distance heuristic neighbors)))))
-(print-time (time (dorun (for [x (range 0 1000)] (dijkstra "a" "d" distance (constantly 0) neighbors)))))
+(print-time (time (dorun (for [x (range 0 1000)] (a* "5" "3" test-distance test-heuristic test-neighbors)))))
+(print-time (time (dorun (for [x (range 0 1000)] (d* "5" "3" test-distance test-heuristic test-neighbors)))))
+(print-time (time (dorun (for [x (range 0 1000)] (dijkstra "5" "3" test-distance (constantly 0) test-neighbors)))))
